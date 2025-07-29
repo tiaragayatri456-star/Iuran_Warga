@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('/BUJIL', [UserController::class, 'logout'])->name('logout');
 
 
 Route::middleware('auth')->group(function () {
