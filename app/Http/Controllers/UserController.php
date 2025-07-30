@@ -18,15 +18,15 @@ class UserController extends Controller
     // Proses login
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/home');
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
+            'password' => 'username atau password salah.',
         ]);
     }
 
@@ -58,13 +58,11 @@ class UserController extends Controller
     {
         $request->validate([
             'name'     => 'required',
-            'email'    => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
 
         User::create([
             'name'     => $request->name,
-            'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
@@ -83,8 +81,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $request->validate([
-            'name'  => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'username'  => 'required',
+            'password' => 'required|password|unique:users,password,' . $id,
         ]);
 
         $user->name  = $request->name;

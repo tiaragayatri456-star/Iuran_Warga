@@ -2,64 +2,45 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Beranda Kas Iuran Warga</title>
+    <title>Kas Iuran Warga</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container mt-4">
-    <h2>Beranda Kas Iuran Warga</h2>
-    <hr>
-
-
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <div class="border p-3">
-                <strong>Total Kas:</strong><br>
-                Rp {{ number_format($totalKas, 0, ',', '.') }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="border p-3">
-                <strong>Jumlah Warga:</strong><br>
-                {{ $jumlahWarga }} orang
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="border p-3">
-                <strong>Total Transaksi:</strong><br>
-                {{ $jumlahTransaksi }}
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Kas Iuran Warga</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Warga</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Iuran</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    {{-- Tombol Tambah --}}
-    <a href="{{ route('iuran.create') }}" class="btn btn-primary mb-3">+ Tambah Iuran</a>
+<!-- Konten Utama -->
+<div class="container text-center py-5">
+    <h1 class="mb-4">Selamat Datang di Aplikasi Kas Iuran Warga</h1>
+    <p class="lead">Pantau iuran warga secara</p>
 
-    {{-- Tabel Iuran --}}
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Warga</th>
-                <th>Tanggal</th>
-                <th>Jumlah</th>
-                <th>Keterangan</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($iurans as $iuran)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $iuran->warga->nama }}</td>
-                <td>{{ date('d-m-Y', strtotime($iuran->tanggal)) }}</td>
-                <td>Rp {{ number_format($iuran->jumlah, 0, ',', '.') }}</td>
-                <td>{{ $iuran->keterangan }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
