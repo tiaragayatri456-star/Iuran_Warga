@@ -24,7 +24,7 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn btn-warning w-100">Login</button>
         </form>
 
         @if ($errors->any())
