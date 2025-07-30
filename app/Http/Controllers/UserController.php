@@ -12,7 +12,7 @@ class UserController extends Controller
     // Tampilkan form login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('login');
     }
 
     // Proses login
