@@ -1,28 +1,28 @@
 @extends('template')
 
 @section('content')
-<div class="container">
-    <h2>Edit Data Warga</h2>
-    <form action="{{ route('warga.update', $warga->id) }}" method="POST">
+    <h1>Edit Data Warga</h1>
+
+    <form action="{{ route('warga.edit', $warga->id) }}" method="POST">
         @csrf
         @method('PUT')
 
-        <div class="form-group">
-            <label>Username:</label>
-            <input type="text" name="username" value="{{ $warga->username }}" class="form-control">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" value="{{ old('username', $warga->username) }}" class="form-control" required>
         </div>
 
-        <div class="form-group">
-            <label>Nama:</label>
-            <input type="text" name="nama" value="{{ $warga->nama }}" class="form-control">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nama</label>
+            <input type="text" name="name" value="{{ old('name', $warga->name) }}" class="form-control" required>
         </div>
 
-        <div class="form-group">
-            <label>Alamat:</label>
-            <input type="text" name="alamat" value="{{ $warga->alamat }}" class="form-control">
+        <div class="mb-3">
+            <label for="alamat" class="form-label">Alamat</label>
+            <input type="text" name="alamat" value="{{ old('alamat', $warga->alamat) }}" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-2">Update</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ route('admin.warga') }}" class="btn btn-secondary">Batal</a>
     </form>
-</div>
 @endsection

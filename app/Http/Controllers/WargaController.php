@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Warga; // ← tambahkan ini
-use Illuminate\Support\Facades\Hash; // ← tambahkan ini
+use App\Models\Warga; 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+
 
 class WargaController extends Controller
 {
@@ -36,22 +38,35 @@ class WargaController extends Controller
     }
     public function index()
 {
-    $warga = \App\Models\Warga::all(); // Ambil semua data warga
+    $warga = \App\Models\Warga::all(); 
     return view('warga', compact('warga'));
 }
-// Dalam WargaController
+
 public function edit($id)
 {
-    $warga = Warga::findOrFail($id);
+    $decryptId = Crypt::decrypt($id); 
+    $warga = Warga::findOrFail($decryptId);
     return view('warga.edit', compact('warga'));
 }
 
 public function destroy($id)
 {
-    $warga = Warga::findOrFail($id);
+    $decryptId = Crypt::decrypt($id); 
+    $warga = Warga::findOrFail($decryptId);
     $warga->delete();
 
     return redirect()->route('admin.warga')->with('success', 'Data warga berhasil dihapus.');
+}
+ public function update(Request $request, $id)
+{
+    $warga = Warga::findOrFail($id);
+    $warga->update([
+        'username' => $request->username,
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+    ]);
+
+    return redirect('/warga')->with('success', 'Data berhasil diperbarui!');
 }
 
 }

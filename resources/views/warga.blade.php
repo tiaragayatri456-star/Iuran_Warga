@@ -21,9 +21,14 @@
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->alamat }}</td>
-                         <td>
+                        <td>
                             <a href="{{ route('warga.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="{{ route('warga.destroy', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus kategori ini?')">Hapus</a>
+
+                            <form action="{{ route('warga.destroy', Crypt::encrypt($item->id)) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -25,7 +25,7 @@
             <a class="nav-link text-white" href="dashboard">Dashboard</a>
           </li>
           <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="category">Kategori</a>
+            <a class="nav-link text-white" href="category">Category</a>
           </li>
           <li class="nav-item mb-2">
             <a class="nav-link text-white" href="register">Tambah Warga</a>

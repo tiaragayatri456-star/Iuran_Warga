@@ -19,7 +19,7 @@ Route::get('/register', [UserController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [WargaController::class, 'store']);
 Route::get('/warga', [WargaController::class, 'index'])->name('admin.warga');
 Route::get('/warga/edit/{id}', [WargaController::class, 'edit'])->name('warga.edit');
-Route::post('/warga/update/', [WargaController::class, 'update'])->name('warga.update');
+Route::put('/warga/update/{id}', [WargaController::class, 'update'])->name('warga.update');
 Route::delete('/warga/delete/{id}', [WargaController::class, 'destroy'])->name('warga.destroy');
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
@@ -45,9 +45,8 @@ Route::get('/warga/home', function () {
     return view('warga.home');
 })->name('warga.home');
 
-
-Route::post('/administrator/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::get('category', [CategoryController::class, 'index'])->name('category.admin');
+Route::get('/administrator/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::get('/administrator/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/administrator/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-
-Route::get('/administrator/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+Route::delete('/administrator/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
