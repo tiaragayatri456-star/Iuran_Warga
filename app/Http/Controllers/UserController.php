@@ -26,7 +26,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'password' => 'username atau password salah.',
+            'password' => 'Username atau password salah.',
         ]);
     }
 
@@ -40,20 +40,45 @@ class UserController extends Controller
         return redirect('/login');
     }
 
+    // Tampilkan form register
+    public function showRegisterForm()
+    {
+        return view('register');
+    }
 
+    
+  public function register(Request $request)
+{
+    $request->validate([
+        'username' => 'required|unique:warga',
+        'password' => 'required',
+        'name'     => 'required',
+        'alamat'   => 'required',
+    ]);
+
+    \App\Models\Warga::create([
+        'username' => $request->username,
+        'password' => bcrypt($request->password),
+        'name'     => $request->name,
+        'alamat'   => $request->alamat, 
+    ]);
+
+    return redirect('/warga/home')->with('success', 'Pendaftaran berhasil!');
+}
+
+
+    
     public function index()
     {
         $users = User::all();
         return view('admin.users.index', compact('users'));
     }
 
-
     public function create()
     {
         return view('admin.users.create');
     }
 
-    // Simpan user baru
     public function store(Request $request)
     {
         $request->validate([
@@ -69,7 +94,6 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan');
     }
 
-   
     public function edit($id)
     {
         $user = User::findOrFail($id);
@@ -81,12 +105,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $request->validate([
-            'username'  => 'required',
-            'password' => 'required|password|unique:users,password,' . $id,
+            'username' => 'required',
+            'password' => 'nullable|min:6',
         ]);
 
-        $user->name  = $request->name;
-        $user->email = $request->email;
+        $user->username = $request->username;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
@@ -95,12 +118,14 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User berhasil diupdate');
+        
     }
 
- 
     public function destroy($id)
     {
         User::destroy($id);
         return redirect()->route('users.index')->with('success', 'User berhasil dihapus');
     }
+
+    
 }

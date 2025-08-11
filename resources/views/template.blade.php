@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -19,7 +17,7 @@
         <h4 class="text-center mb-4">Kas Iuran Warga</h4>
         <ul class="nav flex-column px-3">
           <li class="nav-item mb-2">
-            <a class="nav-link text-white active" href="#">Beranda</a>
+            <a class="nav-link text-white active" href="home">Beranda</a>
           </li>
           <li class="nav-item mb-2">
             <a class="nav-link text-white" href="dashboard">Dashboard</a>
@@ -37,12 +35,10 @@
       </div>
     </nav>
 
-  
-    <main class="col-md-9 col-lg-10 px-md-5 py-4">
-      <h1 class="mb-4">DATA KAS RT</h1>
-      <p class="lead">
-        Iuran warga adalah kontribusi rutin yang dikumpulkan dari setiap kepala keluarga untuk mendukung kegiatan dan kebutuhan bersama di lingkungan tempat tinggal, seperti keamanan, kebersihan, dan sosial. Iuran ini dikelola secara transparan demi kenyamanan dan kesejahteraan seluruh warga.
-      </p>
-
+        <!-- Konten Halaman -->
+        <div style="flex: 1; padding: 20px;">
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>
