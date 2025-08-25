@@ -11,6 +11,7 @@
                     <th>Username</th>
                     <th>Nama</th>
                     <th>Alamat</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -21,6 +22,7 @@
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->alamat }}</td>
+                          <td>{{ $item->status }}</td>
                         <td>
                             <a href="{{ route('warga.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-warning">Edit</a>
 

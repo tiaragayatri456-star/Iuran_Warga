@@ -13,7 +13,13 @@ class Warga extends Model
         'username',
         'password',
         'name',
-        'alamat'
+        'alamat',
+        'status',
     ];
      public $timestamps = true;
+
+     public function payments()
+     {
+    return $this->hasMany(Payment::class);
+    }
 }

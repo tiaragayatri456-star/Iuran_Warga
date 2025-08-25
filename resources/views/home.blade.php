@@ -4,7 +4,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Kas Iuran Warga</title>
+  <title>Iuran Warga</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -31,6 +31,9 @@
             <a class="nav-link text-white" href="register">Tambah Warga</a>
           </li>
           <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/payment/create">Pembayaran</a>
+          </li>
+          <li class="nav-item mb-2">
             <a class="nav-link text-white" href="login">Logout</a>
           </li>
         </ul>
@@ -39,7 +42,7 @@
 
   
     <main class="col-md-9 col-lg-10 px-md-5 py-4">
-      <h1 class="mb-4">DATA KAS RT</h1>
+      <h1 class="mb-4">DATA IURAN WARGA</h1>
       <p class="lead">
         Iuran warga adalah kontribusi rutin yang dikumpulkan dari setiap kepala keluarga untuk mendukung kegiatan dan kebutuhan bersama di lingkungan tempat tinggal, seperti keamanan, kebersihan, dan sosial. Iuran ini dikelola secara transparan demi kenyamanan dan kesejahteraan seluruh warga.
       </p>

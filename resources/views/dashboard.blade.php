@@ -2,55 +2,56 @@
 
 @section('content')
 
-<title>Dashboard Warga & Kategori</title>
+<div class="row g-4">
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 20px;
-  }
-  .cards-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-  .card {
-    min-width: 200px;
-    flex: 0 0 auto;
-    color: white;
-    padding: 20px;
-    border-radius: 6px;
-    box-sizing: border-box;
-  }
-  .yellow { background-color: #fbbf24; }
-  .green { background-color: #16a34a; }
-  .title {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .value {
-    font-size: 28px;
-    font-weight: bold;
-  }
-</style>
-
-<div class="cards-container">
-  <div class="card yellow">
-    <div class="title">Data Warga</div>
-
+  {{-- Card 1: Daftar Warga --}}
+  <div class="col-md-4">
+    <a href="{{ route('admin.warga') }}" class="text-decoration-none">
+      <div class="card text-white bg-primary shadow-lg p-4" style="min-height: 150px;">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="card-title fw-bold">Daftar Warga</h4>
+            </div>
+            <i class="fas fa-users fa-3x"></i>
+          </div>
+        </div>
+      </div>
+    </a>
   </div>
 
-  <div class="card green">
-    <div class="title">Kategori Warga</div>
-
+  {{-- ✅ Card 2: Pembayaran - Sudah Dibenahi --}}
+  <div class="col-md-4">
+    <a href="{{ route('payment.index') }}" class="text-decoration-none">
+      <div class="card text-white bg-danger shadow-lg p-4" style="min-height: 150px;">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="card-title fw-bold">Pembayaran</h4>
+            </div>
+            <i class="fas fa-money-bill-wave fa-3x"></i>
+          </div>
+        </div>
+      </div>
+    </a>
   </div>
 
-  
+  {{-- Card 3: Category --}}
+  <div class="col-md-4">
+    <a href="{{ route('category.admin') }}" class="text-decoration-none">
+      <div class="card text-white bg-warning shadow-lg p-4" style="min-height: 150px;">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="card-title fw-bold">Category</h4>
+            </div>
+            <i class="fas fa-tags fa-3x"></i>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
 
- 
 </div>
 
 @endsection

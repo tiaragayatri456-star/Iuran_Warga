@@ -36,17 +36,18 @@ class WargaController extends Controller
         // Redirect ke halaman daftar warga
         return redirect('/warga')->with('success', 'Warga berhasil ditambahkan!');
     }
-    public function index()
+   public function index()
 {
-    $warga = \App\Models\Warga::all(); 
+    $warga = Warga::orderBy('id', 'asc')->get(); 
     return view('warga', compact('warga'));
 }
+
 
 public function edit($id)
 {
     $decryptId = Crypt::decrypt($id); 
     $warga = Warga::findOrFail($decryptId);
-    return view('warga.edit', compact('warga'));
+    return view('warga-edit', compact('warga'));
 }
 
 public function destroy($id)
@@ -57,16 +58,27 @@ public function destroy($id)
 
     return redirect()->route('admin.warga')->with('success', 'Data warga berhasil dihapus.');
 }
- public function update(Request $request, $id)
+public function update(Request $request, $id)
 {
-    $warga = Warga::findOrFail($id);
-    $warga->update([
-        'username' => $request->username,
-        'nama' => $request->nama,
-        'alamat' => $request->alamat,
+      $warga = Warga::findOrFail($id);              
+
+    // Validasi input
+    $request->validate([
+        'username' => 'required|string|max:50',
+        'name' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+        'status' => 'required|in:warga,petugas',
     ]);
 
-    return redirect('/warga')->with('success', 'Data berhasil diperbarui!');
+
+    $warga->update([
+        'username' => $request->username,
+        'name' => $request->name,
+        'alamat' => $request->alamat,
+        'status' => $request->status,
+    ]);
+
+    return redirect()->route('admin.warga')->with('success', 'Data berhasil diperbarui!');
 }
 
 }

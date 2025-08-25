@@ -27,8 +27,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('category.index') }}" class="btn btn-secondary">Batal</a>
+        <a href="{{ route('category.admin') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection
-w

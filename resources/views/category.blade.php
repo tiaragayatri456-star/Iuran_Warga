@@ -28,14 +28,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $item)
+             @foreach ($categories as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->periode }}</td>
                         <td>Rp {{ number_format($item->nominal, 0, ',', '.') }}</td>
                         <td>
-                            <a href="{{ route('category.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="{{ route('category.delete', $item->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus kategori ini?')">Hapus</a>
+                            <a href="{{ route('category.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('category.delete', Crypt::encrypt($item->id)) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
