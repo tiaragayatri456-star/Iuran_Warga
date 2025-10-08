@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3 text-center">
         <h4 class="mb-0">List Kategori Iuran</h4>
         <a href="{{ route('category.create') }}" class="btn btn-primary">Tambah Kategori</a>
     </div>
@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <!-- Tabel Kategori -->
+    
     <div class="table-responsive">
         <table class="table table-bordered table-striped text-center align-middle mt-3">
             <thead class="table-warning">

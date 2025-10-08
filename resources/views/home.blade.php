@@ -13,7 +13,6 @@
 
 <div class="container-fluid">
   <div class="row min-vh-100">
-    <!-- Sidebar -->
     <nav class="col-md-3 col-lg-2 d-md-block bg-primary sidebar text-white pt-3">
       <div class="position-sticky">
         <h4 class="text-center mb-4">Kas Iuran Warga</h4>
@@ -41,8 +40,8 @@
     </nav>
 
   
-    <main class="col-md-9 col-lg-10 px-md-5 py-4">
-      <h1 class="mb-4">DATA IURAN WARGA</h1>
+    <main class="col-md-9 col-lg-10 px-md-5 py-4 text-center">
+      <h1 class="mb-4"> IURAN WARGA</h1>
       <p class="lead">
         Iuran warga adalah kontribusi rutin yang dikumpulkan dari setiap kepala keluarga untuk mendukung kegiatan dan kebutuhan bersama di lingkungan tempat tinggal, seperti keamanan, kebersihan, dan sosial. Iuran ini dikelola secara transparan demi kenyamanan dan kesejahteraan seluruh warga.
       </p>

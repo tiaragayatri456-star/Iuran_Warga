@@ -17,7 +17,6 @@ class WargaController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi form
         $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:50|unique:warga',
@@ -25,15 +24,13 @@ class WargaController extends Controller
             'alamat' => 'required|string|max:255',
         ]);
 
-        // Simpan ke database
         Warga::create([
             'name' => $request->name,
             'username' => $request->username,
-            'password' => Hash::make($request->password), // Enkripsi password
+            'password' => Hash::make($request->password), 
             'alamat' => $request->alamat,
         ]);
 
-        // Redirect ke halaman daftar warga
         return redirect('/warga')->with('success', 'Warga berhasil ditambahkan!');
     }
    public function index()
@@ -62,7 +59,6 @@ public function update(Request $request, $id)
 {
       $warga = Warga::findOrFail($id);              
 
-    // Validasi input
     $request->validate([
         'username' => 'required|string|max:50',
         'name' => 'required|string|max:255',

@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Pembayaran;
 use App\Models\User;
 
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
@@ -21,11 +22,16 @@ Route::post('/iuran', [UserController::class, 'iuran']);
 
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [WargaController::class, 'store']);
+
+//warga
 Route::get('/warga', [WargaController::class, 'index'])->name('admin.warga');
 Route::get('/warga/edit/{id}', [WargaController::class, 'edit'])->name('warga.edit');
 Route::post('/warga/update/{id}', [WargaController::class, 'update'])->name('warga.update');
 Route::delete('/warga/delete/{id}', [WargaController::class, 'destroy'])->name('warga.destroy');
+
+//pembayaran
 Route::get('/pembayaran', [PaymentController::class, 'index'])->name('pembayaran.admin');
+
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -48,6 +54,7 @@ Route::get('/warga/home', function () {
     return view('warga.home');
 })->name('warga.home');
 
+//category
 Route::get('/category', [CategoryController::class, 'index'])->name('category.admin');
 Route::get('/administrator/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::post('/administrator/category/create', [CategoryController::class, 'store'])->name('category.store');
@@ -55,8 +62,12 @@ Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('ca
 Route::post('/administrator/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/administrator/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 
+//payment
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
 Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
 Route::post('/payment/create', [PaymentController::class, 'store'])->name('payment.store');
+Route::get('/payment/history/{id}', [PaymentController::class, 'history'])->name('payment.history');
 Route::get('/payments/status/{id}', [PaymentController::class, 'ubahStatus'])->name('payment.ubahStatus');
+
+Route::get('users/export/', [UserController::class, 'export']);
 

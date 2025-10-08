@@ -12,32 +12,30 @@
 <table class="table table-bordered">
     <thead class="table-primary">
         <tr>
-            <th>ID</th>
             <th>Nama</th>
-            <th>Jumlah</th>
-            <th>Tanggal</th>
-            <th>Status</th>
+            <th>Periode</th>
+            <th>Tagihan</th>
+            <th>Dibayar</th>
+            <th>Sisa Tagihan</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
         @foreach($payments as $payment)
         <tr>
-            <td>{{ $payment->id }}</td>
             <td>{{ $payment->warga->name ?? '-' }}</td>
-           <td>Rp {{ number_format($payment->category->nominal ?? 0, 0, ',', '.') }}</td>
-            <td>{{ \Carbon\Carbon::parse($payment->tanggal_pembayaran)->format('d M Y') }}</td>
+            <td>{{ ucfirst($payment->category->periode ?? '-') }}</td>
             <td>
-                @if($payment->status === 'sudah_bayar')
-                    <span class="badge bg-success">sudah_bayar</span>
-                @else
-                    <span class="badge bg-danger">belum_bayar</span>
-                @endif
+                Rp {{ number_format($payment->total_tagihan ?? 0, 0, ',', '.') }}
             </td>
             <td>
-                <a href="{{ route('payment.ubahStatus', $payment->id) }}" class="btn btn-outline-primary btn-sm">
-                    Tandai {{ $payment->status === 'sudah_bayar' ? 'Belum Bayar' : 'Sudah Bayar' }}
-                </a>
+                Rp {{ number_format($payment->total_dibayar ?? 0, 0, ',', '.') }}
+            </td>
+            <td>
+                Rp {{ number_format($payment->sisa_tagihan ?? 0, 0, ',', '.') }}
+            </td>
+            <td>
+               <a href="{{ route('payment.history', $payment->warga->id ?? 0) }}" class="btn btn-info btn-sm">History</a>
             </td>
         </tr>
         @endforeach

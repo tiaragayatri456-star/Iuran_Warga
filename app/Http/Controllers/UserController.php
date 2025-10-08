@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
-    // Tampilkan form login
+  
     public function showLoginForm()
     {
         return view('login');
     }
 
-    // Proses login
+ 
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
@@ -30,7 +32,7 @@ class UserController extends Controller
         ]);
     }
 
-    // Logout
+  
     public function logout(Request $request)
     {
         Auth::logout();
@@ -40,7 +42,7 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    // Tampilkan form register
+
     public function showRegisterForm()
     {
         return view('register');
@@ -127,5 +129,9 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User berhasil dihapus');
     }
 
-    
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
 }
+

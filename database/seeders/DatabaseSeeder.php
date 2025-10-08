@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Warga::create([
             'name' => 'joni',
             'username' => 'tiara',
-            'password' => bcrypt('tiara123'),
+            'password' => bcrypt('warga123'),
         ]);
     }
 }

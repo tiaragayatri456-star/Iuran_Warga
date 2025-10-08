@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Crypt;
 
 class CategoryController extends Controller
 {
-    // Tampilkan semua kategori
     public function index()
     {
         $categories = Category::all();
@@ -67,7 +66,6 @@ class CategoryController extends Controller
         return redirect()->route('category.admin')->with('success', 'Kategori berhasil diupdate');
     }
 
-    // Hapus kategori
     public function delete($encryptedId)
     {
         try {

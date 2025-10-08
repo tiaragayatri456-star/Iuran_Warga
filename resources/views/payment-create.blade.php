@@ -12,7 +12,6 @@
 <form action="{{ route('payment.store') }}" method="POST">
     @csrf
 
-    {{-- Pilih Warga --}}
     <div class="mb-3">
         <label for="warga_id" class="form-label">Nama Warga</label>
         <select name="warga_id" id="warga_id" class="form-control" required>
@@ -23,7 +22,6 @@
         </select>
     </div>
 
-    {{-- Pilih Periode --}}
     <div class="mb-3">
         <label for="category_id" class="form-label">Periode</label>
         <select name="category_id" id="category_id" class="form-control" required>
@@ -39,23 +37,19 @@
         </select>
     </div>
 
-    {{-- Nominal otomatis --}}
     <div class="mb-3">
-        <label for="jumlah_pembayaran" class="form-label">Nominal</label>
-        <input type="text" class="form-control" id="jumlah_pembayaran" readonly>
-        <input type="hidden" name="jumlah_pembayaran" id="jumlah_pembayaran_hidden">
+        <label for="jumlah_pembayaran" class="form-label">Jumlah Pembayaran</label>
+        <input type="number" name="jumlah_pembayaran" id="jumlah_pembayaran" class="form-control" min="1" required>
+        <small class="text-muted">Tagihan: <strong>Rp <span id="tagihan_display">0</span></strong></small>
     </div>
 
-    {{-- Tombol --}}
     <button type="submit" class="btn btn-primary">Bayar</button>
-    <a href="payment" onclick="redirectToRiwayat()" class="btn btn-secondary">Riwayat Pembayaran</a>
+    <button type="button" onclick="redirectToRiwayat()" class="btn btn-secondary">Riwayat Pembayaran</button>
 </form>
 
-{{-- Script --}}
 <script>
     const categorySelect = document.getElementById('category_id');
-    const nominalField = document.getElementById('jumlah_pembayaran');
-    const nominalHidden = document.getElementById('jumlah_pembayaran_hidden');
+    const tagihanDisplay = document.getElementById('tagihan_display');
 
     function updateNominal() {
         const selected = categorySelect.options[categorySelect.selectedIndex];
@@ -67,21 +61,15 @@
                 currency: 'IDR'
             }).format(nominal);
 
-            nominalField.value = formatted;
-            nominalHidden.value = nominal;
+            tagihanDisplay.textContent = formatted;
         } else {
-            nominalField.value = '';
-            nominalHidden.value = '';
+            tagihanDisplay.textContent = '0';
         }
     }
 
-    // Trigger saat user ganti pilihan
     categorySelect.addEventListener('change', updateNominal);
-
-    // Trigger sekali saat halaman pertama kali load
     window.addEventListener('DOMContentLoaded', updateNominal);
 
-    // Riwayat redirect
     function redirectToRiwayat() {
         const wargaId = document.getElementById('warga_id').value;
         if (!wargaId) {

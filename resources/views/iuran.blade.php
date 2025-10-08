@@ -48,7 +48,6 @@
                             <a href="#" class="btn btn-danger btn-sm">Hapus</a>
                         </td>
                     </tr>
-                    <!-- Tambah baris lainnya di sini -->
                 </tbody>
             </table>
         </div>

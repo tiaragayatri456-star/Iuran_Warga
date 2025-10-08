@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Iuran Warga</title>
+  <title>Iuran Warga </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
   <div class="row min-vh-100">
-    <!-- Sidebar -->
+
     <nav class="col-md-3 col-lg-2 d-md-block bg-primary sidebar text-white pt-3">
       <div class="position-sticky">
         <h4 class="text-center mb-4">Kas Iuran Warga</h4>
@@ -38,7 +38,7 @@
       </div>
     </nav>
 
-        <!-- Konten Halaman -->
+       
         <div style="flex: 1; padding: 20px;">
             @yield('content')
         </div>

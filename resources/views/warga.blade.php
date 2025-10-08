@@ -4,6 +4,8 @@
     <h1 class="text-center mt-4">Data Warga</h1>
 
     <div class="container mt-4">
+        <a href="{{ url('users/export') }}" class="btn btn-success mb-3">Export Data</a>
+
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-primary text-center">
                 <tr>
@@ -22,7 +24,7 @@
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->alamat }}</td>
-                          <td>{{ $item->status }}</td>
+                        <td>{{ $item->status }}</td>
                         <td>
                             <a href="{{ route('warga.edit', Crypt::encrypt($item->id)) }}" class="btn btn-sm btn-warning">Edit</a>
 

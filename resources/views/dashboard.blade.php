@@ -4,7 +4,7 @@
 
 <div class="row g-4">
 
-  {{-- Card 1: Daftar Warga --}}
+
   <div class="col-md-4">
     <a href="{{ route('admin.warga') }}" class="text-decoration-none">
       <div class="card text-white bg-primary shadow-lg p-4" style="min-height: 150px;">
@@ -20,7 +20,7 @@
     </a>
   </div>
 
-  {{-- ✅ Card 2: Pembayaran - Sudah Dibenahi --}}
+  
   <div class="col-md-4">
     <a href="{{ route('payment.index') }}" class="text-decoration-none">
       <div class="card text-white bg-danger shadow-lg p-4" style="min-height: 150px;">
@@ -36,7 +36,6 @@
     </a>
   </div>
 
-  {{-- Card 3: Category --}}
   <div class="col-md-4">
     <a href="{{ route('category.admin') }}" class="text-decoration-none">
       <div class="card text-white bg-warning shadow-lg p-4" style="min-height: 150px;">
