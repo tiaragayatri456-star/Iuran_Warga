@@ -20,11 +20,15 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/iuran', [UserController::class, 'iuran']);
 
-Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
+
 Route::post('/register', [WargaController::class, 'store']);
+Route::get('/register', [UserController::class, 'register'])->name('admin.register');
+
 
 //warga
 Route::get('/warga', [WargaController::class, 'index'])->name('admin.warga');
+Route::get('/warga/create', [WargaController::class, 'create'])->name('admin.warga.create');
+Route::post('/warga', [WargaController::class, 'store'])->name('admin.warga.store');
 Route::get('/warga/edit/{id}', [WargaController::class, 'edit'])->name('warga.edit');
 Route::post('/warga/update/{id}', [WargaController::class, 'update'])->name('warga.update');
 Route::delete('/warga/delete/{id}', [WargaController::class, 'destroy'])->name('warga.destroy');
@@ -65,9 +69,14 @@ Route::delete('/administrator/category/delete/{id}', [CategoryController::class,
 //payment
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
 Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+Route::get('/payment/edit/{id}', [PaymentController::class, 'edit'])->name('payment.edit');
 Route::post('/payment/create', [PaymentController::class, 'store'])->name('payment.store');
+Route::delete('/payment/delete/{id}', [PaymentController::class, 'delete'])->name('payment.delete');
 Route::get('/payment/history/{id}', [PaymentController::class, 'history'])->name('payment.history');
 Route::get('/payments/status/{id}', [PaymentController::class, 'ubahStatus'])->name('payment.ubahStatus');
+Route::get('/payment/riwayat/{id}', [PaymentController::class, 'riwayat'])->name('payment.riwayat');
+
+
 
 Route::get('users/export/', [UserController::class, 'export']);
 

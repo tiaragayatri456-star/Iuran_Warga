@@ -129,6 +129,59 @@ class PaymentController extends Controller
             $finalPayments->push($first);
         }
 
-        return view('payment-history', ['payments' => $finalPayments]);
+        return view('payment-riwayat', ['payments' => $finalPayments]);
     }
+
+     public function riwayat($warga_id)
+    {
+        // Dekripsi jika ID dienkripsi
+        // $wargaId = Crypt::decrypt($warga_id); // jika menggunakan encrypt di route
+
+        $warga = Warga::findOrFail($warga_id);
+        $payments = Payment::where('warga_id', $warga_id)
+                            ->with('category')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        return view('payment-riwayat', compact('warga', 'payments'));
+    }
+    // Form edit pembayaran
+public function edit($id)
+{
+    $payment = Payment::findOrFail($id);
+    $categories = Category::whereIn('periode', ['Bulanan', 'Mingguan'])->get();
+    $wargas = Warga::all();
+
+    return view('payment-edit', compact('payment', 'categories', 'wargas'));
+}
+
+// Update data pembayaran
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'warga_id' => 'required|exists:warga,id',
+        'category_id' => 'required|exists:categories,id',
+        'jumlah_pembayaran' => 'required|numeric|min:1'
+    ]);
+
+    $payment = Payment::findOrFail($id);
+    $payment->update([
+        'warga_id' => $request->warga_id,
+        'category_id' => $request->category_id,
+        'jumlah_pembayaran' => $request->jumlah_pembayaran,
+    ]);
+
+    return redirect()->route('payment.index')->with('success', 'Data pembayaran berhasil diperbarui.');
+}
+
+public function delete($id)
+{
+    $payment = Payment::findOrFail($id);
+    $payment->delete();
+
+    return redirect()->route('payment.index')->with('success', 'Data pembayaran berhasil dihapus.');
+}
+
+
+
 }
